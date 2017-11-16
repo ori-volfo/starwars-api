@@ -6,11 +6,14 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
+import { getCharacters } from './reducer/characters/actions';
 
 const store = createStore(reducer, compose(
    applyMiddleware(thunk),
    window.devToolsExtension ?  window.devToolsExtension() : f => f
 ));
+
+store.dispatch(getCharacters());
 
 require('./index.html');
 
